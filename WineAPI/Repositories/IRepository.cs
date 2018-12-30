@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WineAPI.Models;
+using WineLib.Models;
 
 namespace WineAPI.Repositories
 {

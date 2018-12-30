@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using WineLib.Models;
 
 namespace WineAPI.Models
 {
