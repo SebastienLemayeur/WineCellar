@@ -8,6 +8,8 @@ using WineAPI.Repositories;
 
 namespace WineAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TypesController : ControllerCrud<WineType, TypeRepository>
     {
         public TypesController(TypeRepository repo) : base(repo)
