@@ -9,6 +9,7 @@ namespace WineAPI.Models
     public class WineType
     {
         [Required(ErrorMessage = "A type must have a name")]
+        [StringLength(50, ErrorMessage = "The type cannot exceed 50 characters")]
         public string Type { get; set; }
         public string Description { get; set; }
     }

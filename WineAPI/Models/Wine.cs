@@ -6,6 +6,7 @@ namespace WineAPI.Models
     public class Wine
     {
         [Required(ErrorMessage = "A wine must have a name")]
+        [StringLength(100, ErrorMessage = "The name cannot exceed 100 characters")]
         public string Name { get; set; }
 
         public decimal Price { get; set; }
@@ -20,8 +21,8 @@ namespace WineAPI.Models
 
         public DateTime PurchasedOn { get; set; }
 
+        public WineType Type{ get; set; }
 
-
-        public Producer Chateau { get; set; }
+        public Producer Producer { get; set; }
     }
 }
