@@ -2,9 +2,9 @@
 
 namespace WineAPI.Models
 {
-    public class Chateau
+    public class Producer
     {
-        [Required(ErrorMessage = "A chateau must have a name")]
+        [Required(ErrorMessage = "A producer must have a name")]
         public string Name { get; set; }
 
         public string Country { get; set; }

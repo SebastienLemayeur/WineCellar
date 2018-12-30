@@ -14,15 +14,20 @@ namespace WineAPI.Models
         {
 
             modelBuilder.Entity<Wine>()
-                .ToTable("Publisher")
+                .ToTable("Wine")
                 .HasData();
 
-            modelBuilder.Entity<Chateau>()
-                .ToTable("Author")
+            modelBuilder.Entity<Producer>()
+                .ToTable("Producer")
+                .HasData();
+
+            modelBuilder.Entity<WineType>()
+                .ToTable("Type")
                 .HasData();
         }
 
-        public DbSet<Wine> Publishers { get; set; }
-        public DbSet<Chateau> Authors { get; set; }
+        public DbSet<Wine> Wines { get; set; }
+        public DbSet<Producer> Producers { get; set; }
+        public DbSet<WineType> Types { get; set; }
     }
 }

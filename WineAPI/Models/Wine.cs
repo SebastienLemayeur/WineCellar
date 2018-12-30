@@ -15,9 +15,13 @@ namespace WineAPI.Models
         public int Amount { get; set; }
 
         public int Year { get; set; } = 1900;
- 
+
+        public int DrinkBefore { get; set; }
+
         public DateTime PurchasedOn { get; set; }
 
-        public Chateau Chateau { get; set; }
+
+
+        public Producer Chateau { get; set; }
     }
 }
