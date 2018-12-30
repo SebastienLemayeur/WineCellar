@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WineAPI.Models;
 using WineLib.Models;
+using WineLib.DTO;
 
 namespace WineAPI.Repositories
 {
@@ -20,6 +21,15 @@ namespace WineAPI.Repositories
                 .Include(w => w.Producer)
                 .Include(w => w.Type)
                 .ToListAsync();
+        }
+
+        public async Task<List<WineSimple>> GetSimple()
+        {
+            return await db.Wines.Select(w => new WineSimple
+            {
+                Name = w.Name,
+                Year = w.Year
+            }).ToListAsync();
         }
     }
 }

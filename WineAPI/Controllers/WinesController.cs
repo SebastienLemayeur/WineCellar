@@ -21,5 +21,12 @@ namespace WineAPI.Controllers
         {
             return Ok(await repository.GetFullDetails());
         }
+
+        [HttpGet]
+        [Route("simple")]
+        public async Task<IActionResult> GetSimple()
+        {
+            return Ok(await repository.GetSimple());
+        }
     }
 }
