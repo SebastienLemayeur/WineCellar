@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineAPI", "WineAPI\WineAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineLib", "WineLib\WineLib.csproj", "{01AB8857-06FC-4E52-BA62-67969C21189E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineGUI", "WineGUI\WineGUI.csproj", "{B33C89E6-DD84-4A1E-B40C-0D8B929C561C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{01AB8857-06FC-4E52-BA62-67969C21189E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01AB8857-06FC-4E52-BA62-67969C21189E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01AB8857-06FC-4E52-BA62-67969C21189E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33C89E6-DD84-4A1E-B40C-0D8B929C561C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33C89E6-DD84-4A1E-B40C-0D8B929C561C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33C89E6-DD84-4A1E-B40C-0D8B929C561C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33C89E6-DD84-4A1E-B40C-0D8B929C561C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
