@@ -52,7 +52,7 @@ namespace WineAPI.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> PostPublisher([FromBody] T entity)
+        public async Task<IActionResult> Post([FromBody] T entity)
         {
             if (!ModelState.IsValid)
             {
