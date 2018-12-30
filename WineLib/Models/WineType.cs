@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WineAPI.Models
+namespace WineLib.Models
 {
     public class WineType : EntityBase
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WineAPI.Models
+namespace WineLib.Models
 {
     public class Producer : EntityBase
     {

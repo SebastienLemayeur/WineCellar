@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WineAPI.Models
+namespace WineLib.Models
 {
     public class Wine : EntityBase
     {
