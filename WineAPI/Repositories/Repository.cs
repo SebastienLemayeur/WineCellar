@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -16,49 +17,79 @@ namespace WineAPI.Repositories
             db = context;
         }
 
-        public Task<T> Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            throw new NotImplementedException();
+            db.Set<T>().Add(entity);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            return entity;
         }
 
-        public Task<T> Delete(T entity)
+        public async Task<T> Delete(T entity)
         {
-            throw new NotImplementedException();
+            db.Set<T>().Remove(entity);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            return entity;
         }
 
-        public Task<T> Delete(int id)
+        public async Task<T> Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await GetById(id);
+            if (entity == null) return null;
+            return await Delete(entity);
         }
 
-        public IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return db.Set<T>().AsNoTracking();
         }
 
-        public Task<T> GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await db.Set<T>().FindAsync(id);
         }
 
         public IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return db.Set<T>()
+                .Where(predicate).AsNoTracking();
         }
 
-        public Task<IEnumerable<T>> ListAll()
+        public async Task<IEnumerable<T>> ListAll()
         {
-            throw new NotImplementedException();
+            return await GetAll().ToListAsync();
         }
 
-        public Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
+        public async virtual Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await GetFiltered(predicate).ToListAsync();
         }
 
-        public Task<T> Update(T entity)
+        public async Task<T> Update(T entity)
         {
-            throw new NotImplementedException();
+            db.Entry(entity).State = EntityState.Modified;
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            return entity;
         }
     }
 }
