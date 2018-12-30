@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WineAPI.Models;
+using WineAPI.Repositories;
 
 namespace WineAPI.Controllers
 {
-    public class WinesController : Controller
+    public class WinesController : ControllerCrud<Wine, WineRepository>
     {
-        public IActionResult Index()
+        public WinesController(WineRepository repo) : base(repo)
         {
-            return View();
         }
     }
 }
