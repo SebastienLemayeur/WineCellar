@@ -18,6 +18,7 @@ namespace WineAPI.Models
                 .HasData(
                     new Wine
                     {
+                        Id = 1,
                         Name = "Tour de Bonnet",
                         Year = 2013,
                         Amount = 1,
@@ -26,6 +27,7 @@ namespace WineAPI.Models
                     },
                     new Wine
                     {
+                        Id = 2,
                         Name = "Saint-Emilion Grand Cru",
                         Price = 13.99m,
                         Year = 2010,
@@ -35,6 +37,7 @@ namespace WineAPI.Models
                     }, 
                     new Wine
                     {
+                        Id = 3,
                         Name = "Tour de Bonnet",
                         Price = 13.99m,
                         Year = 2013,
@@ -49,12 +52,14 @@ namespace WineAPI.Models
                 .HasData(
                     new Producer
                     {
+                        Id = 1,
                         Name = "Union de producteurs de Saint-Emilion",
                         Country = "France",
                         Region = "Saint-Emilion"
                     },
                     new Producer
                     {
+                        Id = 2,
                         Name = "André Lurton",
                         Country = "France",
                         Region = "Bordeaux"
@@ -66,16 +71,19 @@ namespace WineAPI.Models
                 .HasData(
                     new WineType
                     {
+                        Id = 1,
                         Type = "Red",
                         Description = "Red wines"
                     },
                     new WineType
                     {
+                        Id = 2,
                         Type = "White",
                         Description = "White wines"
                     },
                     new WineType
                     {
+                        Id = 3,
                         Type = "Dessert",
                         Description = "Wines best suited for dessert"
                     }
