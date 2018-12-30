@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,14 @@ namespace WineAPI.Repositories
     {
         public WineRepository(WineServiceContext context) : base(context)
         {
+        }
+
+        public async Task<List<Wine>> GetFullDetails()
+        {
+            return await GetAll()
+                .Include(w => w.Producer)
+                .Include(w => w.Type)
+                .ToListAsync();
         }
     }
 }

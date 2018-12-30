@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WineAPI.Migrations
 {
-    public partial class WineDBInitial : Migration
+    public partial class CorrectedID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,8 +49,8 @@ namespace WineAPI.Migrations
                     Year = table.Column<int>(nullable: false),
                     DrinkBefore = table.Column<int>(nullable: false),
                     PurchasedOn = table.Column<DateTime>(nullable: false),
-                    TypeId = table.Column<int>(nullable: true),
-                    ProducerId = table.Column<int>(nullable: true)
+                    TypeId = table.Column<int>(nullable: false),
+                    ProducerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,13 +60,13 @@ namespace WineAPI.Migrations
                         column: x => x.ProducerId,
                         principalTable: "Producer",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Wine_Type_TypeId",
                         column: x => x.TypeId,
                         principalTable: "Type",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -91,12 +91,17 @@ namespace WineAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Wine",
                 columns: new[] { "Id", "Amount", "DrinkBefore", "Name", "Price", "ProducerId", "PurchasedOn", "TypeId", "Year" },
-                values: new object[,]
-                {
-                    { 1, 1, 2018, "Tour de Bonnet", 0m, null, new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2013 },
-                    { 2, 5, 2016, "Saint-Emilion Grand Cru", 13.99m, null, new DateTime(2012, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2010 },
-                    { 3, 1, 0, "Tour de Bonnet", 13.99m, null, new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2013 }
-                });
+                values: new object[] { 1, 1, 2018, "Tour de Bonnet", 0m, 2, new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2013 });
+
+            migrationBuilder.InsertData(
+                table: "Wine",
+                columns: new[] { "Id", "Amount", "DrinkBefore", "Name", "Price", "ProducerId", "PurchasedOn", "TypeId", "Year" },
+                values: new object[] { 2, 5, 2016, "Saint-Emilion Grand Cru", 13.99m, 1, new DateTime(2012, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2010 });
+
+            migrationBuilder.InsertData(
+                table: "Wine",
+                columns: new[] { "Id", "Amount", "DrinkBefore", "Name", "Price", "ProducerId", "PurchasedOn", "TypeId", "Year" },
+                values: new object[] { 3, 3, 2021, "Chateau les Tonneux", 8m, 1, new DateTime(2018, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2018 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wine_ProducerId",

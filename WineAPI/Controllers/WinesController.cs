@@ -15,5 +15,11 @@ namespace WineAPI.Controllers
         public WinesController(WineRepository repo) : base(repo)
         {
         }
+
+        [HttpGet]
+        public override async Task<IActionResult> Get()
+        {
+            return Ok(await repository.GetFullDetails());
+        }
     }
 }

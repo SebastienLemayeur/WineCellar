@@ -14,40 +14,6 @@ namespace WineAPI.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Wine>()
-                .ToTable("Wine")
-                .HasData(
-                    new Wine
-                    {
-                        Id = 1,
-                        Name = "Tour de Bonnet",
-                        Year = 2013,
-                        Amount = 1,
-                        PurchasedOn = new DateTime(2016, 5, 10),
-                        DrinkBefore = 2018
-                    },
-                    new Wine
-                    {
-                        Id = 2,
-                        Name = "Saint-Emilion Grand Cru",
-                        Price = 13.99m,
-                        Year = 2010,
-                        Amount = 5,
-                        PurchasedOn = new DateTime(2012, 6, 8),
-                        DrinkBefore = 2016
-                    }, 
-                    new Wine
-                    {
-                        Id = 3,
-                        Name = "Tour de Bonnet",
-                        Price = 13.99m,
-                        Year = 2013,
-                        Amount = 1,
-                        PurchasedOn = new DateTime(2016, 5, 10)
-                    }
-
-                );
-
             modelBuilder.Entity<Producer>()
                 .ToTable("Producer")
                 .HasData(
@@ -88,6 +54,47 @@ namespace WineAPI.Models
                         Type = "Dessert",
                         Description = "Wines best suited for dessert"
                     }
+                );
+
+            modelBuilder.Entity<Wine>()
+                .ToTable("Wine")
+                .HasData(
+                    new Wine
+                    {
+                        Id = 1,
+                        Name = "Tour de Bonnet",
+                        Year = 2013,
+                        Amount = 1,
+                        PurchasedOn = new DateTime(2016, 5, 10),
+                        DrinkBefore = 2018,
+                        ProducerId = 2,
+                        TypeId = 1
+                    },
+                    new Wine
+                    {
+                        Id = 2,
+                        Name = "Saint-Emilion Grand Cru",
+                        Price = 13.99m,
+                        Year = 2010,
+                        Amount = 5,
+                        PurchasedOn = new DateTime(2012, 6, 8),
+                        DrinkBefore = 2016,
+                        ProducerId = 1,
+                        TypeId = 1
+                    },
+                    new Wine
+                    {
+                        Id = 3,
+                        Name = "Chateau les Tonneux",
+                        Price = 8m,
+                        Year = 2018,
+                        Amount = 3,
+                        PurchasedOn = new DateTime(2018, 5, 10),
+                        DrinkBefore = 2021,
+                        ProducerId = 1,
+                        TypeId = 2
+                    }
+
                 );
         }
 

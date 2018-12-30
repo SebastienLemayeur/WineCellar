@@ -19,7 +19,7 @@ namespace WineAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WineAPI.Models.Producer", b =>
+            modelBuilder.Entity("WineLib.Models.Producer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace WineAPI.Migrations
                     );
                 });
 
-            modelBuilder.Entity("WineAPI.Models.Wine", b =>
+            modelBuilder.Entity("WineLib.Models.Wine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,11 +61,11 @@ namespace WineAPI.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int?>("ProducerId");
+                    b.Property<int>("ProducerId");
 
                     b.Property<DateTime>("PurchasedOn");
 
-                    b.Property<int?>("TypeId");
+                    b.Property<int>("TypeId");
 
                     b.Property<int>("Year");
 
@@ -78,13 +78,13 @@ namespace WineAPI.Migrations
                     b.ToTable("Wine");
 
                     b.HasData(
-                        new { Id = 1, Amount = 1, DrinkBefore = 2018, Name = "Tour de Bonnet", Price = 0m, PurchasedOn = new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), Year = 2013 },
-                        new { Id = 2, Amount = 5, DrinkBefore = 2016, Name = "Saint-Emilion Grand Cru", Price = 13.99m, PurchasedOn = new DateTime(2012, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Year = 2010 },
-                        new { Id = 3, Amount = 1, DrinkBefore = 0, Name = "Tour de Bonnet", Price = 13.99m, PurchasedOn = new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), Year = 2013 }
+                        new { Id = 1, Amount = 1, DrinkBefore = 2018, Name = "Tour de Bonnet", Price = 0m, ProducerId = 2, PurchasedOn = new DateTime(2016, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), TypeId = 1, Year = 2013 },
+                        new { Id = 2, Amount = 5, DrinkBefore = 2016, Name = "Saint-Emilion Grand Cru", Price = 13.99m, ProducerId = 1, PurchasedOn = new DateTime(2012, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), TypeId = 1, Year = 2010 },
+                        new { Id = 3, Amount = 3, DrinkBefore = 2021, Name = "Chateau les Tonneux", Price = 8m, ProducerId = 1, PurchasedOn = new DateTime(2018, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), TypeId = 2, Year = 2018 }
                     );
                 });
 
-            modelBuilder.Entity("WineAPI.Models.WineType", b =>
+            modelBuilder.Entity("WineLib.Models.WineType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,15 +107,17 @@ namespace WineAPI.Migrations
                     );
                 });
 
-            modelBuilder.Entity("WineAPI.Models.Wine", b =>
+            modelBuilder.Entity("WineLib.Models.Wine", b =>
                 {
-                    b.HasOne("WineAPI.Models.Producer", "Producer")
+                    b.HasOne("WineLib.Models.Producer", "Producer")
                         .WithMany()
-                        .HasForeignKey("ProducerId");
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("WineAPI.Models.WineType", "Type")
+                    b.HasOne("WineLib.Models.WineType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId");
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

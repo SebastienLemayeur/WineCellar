@@ -21,8 +21,10 @@ namespace WineLib.Models
 
         public DateTime PurchasedOn { get; set; }
 
+        public int TypeId { get; set; }
         public WineType Type{ get; set; }
-        
+
+        public int ProducerId { get; set; }
         public Producer Producer { get; set; }
     }
 }
