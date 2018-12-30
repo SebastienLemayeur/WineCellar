@@ -2,7 +2,7 @@
 
 namespace WineAPI.Models
 {
-    public class Producer
+    public class Producer : EntityBase
     {
         [Required(ErrorMessage = "A producer must have a name")]
         [StringLength(100, ErrorMessage = "The name cannot exceed 100 characters")]

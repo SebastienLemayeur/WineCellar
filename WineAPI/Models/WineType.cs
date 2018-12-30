@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WineAPI.Models
 {
-    public class WineType
+    public class WineType : EntityBase
     {
         [Required(ErrorMessage = "A type must have a name")]
         [StringLength(50, ErrorMessage = "The type cannot exceed 50 characters")]

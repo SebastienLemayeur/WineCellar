@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WineAPI.Models
 {
-    public class Wine
+    public class Wine : EntityBase
     {
         [Required(ErrorMessage = "A wine must have a name")]
         [StringLength(100, ErrorMessage = "The name cannot exceed 100 characters")]
