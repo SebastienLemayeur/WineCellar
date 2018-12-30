@@ -6,8 +6,10 @@ using WineAPI.Models;
 
 namespace WineAPI.Repositories
 {
-    public class WineRepository
+    public class WineRepository :Repository<Wine>
     {
-
+        public WineRepository(WineServiceContext context) : base(context)
+        {
+        }
     }
 }
