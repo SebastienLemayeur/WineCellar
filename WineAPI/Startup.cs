@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WineAPI.Models;
+using WineAPI.Repositories;
 
 namespace WineAPI
 {
@@ -22,7 +23,10 @@ namespace WineAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<WineServiceContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("WineService")));
+                options.UseSqlServer(Configuration.GetConnectionString("WineService")));
+            services.AddScoped<WineRepository>();
+            services.AddScoped<TypeRepository>();
+            services.AddScoped<ProducerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
