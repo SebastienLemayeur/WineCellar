@@ -8,17 +8,19 @@ namespace WineAPI.Models
 {
     public class Wine
     {
-        [Required]
+        [Required(ErrorMessage = "A wine must have a name")]
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A wine must have an amount")]
+        [Range(0, 99, ErrorMessage = "Geef een aantal tussen 0 en 99 in.")]
         public int Amount { get; set; }
 
-        [Required]
-        public int Year { get; set; }
+        public int Year { get; set; } = 1900;
+ 
+        public DateTime PurchasedOn { get; set; }
 
-        public DateTime PurchasedOn{ get; set; }
+        public Chateau Chateau { get; set; }
     }
 }
