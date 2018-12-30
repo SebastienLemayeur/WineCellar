@@ -22,7 +22,7 @@ namespace WineAPI.Models
         public DateTime PurchasedOn { get; set; }
 
         public WineType Type{ get; set; }
-
+        
         public Producer Producer { get; set; }
     }
 }
