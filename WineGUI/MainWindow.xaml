@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Wines" />
+            <Button Content="Producers" />
+            <Button Content="Types" />
+        </StackPanel>
+        <Frame Grid.Row="1" x:Name="Main" Background="LightBlue"/>
+        <StackPanel Grid.Row="2">
+            <Button Content="Open" />
+        </StackPanel>
     </Grid>
 </Window>
