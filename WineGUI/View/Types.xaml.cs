@@ -18,7 +18,7 @@ namespace WineGUI.View
     /// <summary>
     /// Interaction logic for Types.xaml
     /// </summary>
-    public partial class Types : Page
+    public partial class Types : UserControl
     {
         public Types()
         {

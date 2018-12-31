@@ -18,7 +18,7 @@ namespace WineGUI.View
     /// <summary>
     /// Interaction logic for Producers.xaml
     /// </summary>
-    public partial class Producers : Page
+    public partial class Producers : UserControl
     {
         public Producers()
         {
