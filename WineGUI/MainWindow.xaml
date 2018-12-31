@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <Style x:Key="NavigationButtons">
+        <Style x:Key="ButtonStyle">
             <Setter Property="Control.FontSize" Value="24"/>
-            <Setter Property="Control.Margin" Value="10,5"/>
             <Setter Property="Control.Background" Value="White"/>
+            <Setter Property="Control.Margin" Value="0,5"/>
+        </Style>
+        <Style x:Key="NavigationButtons" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Control.Margin" Value="10,5"/>
         </Style>
     </Window.Resources>
     <Grid>
@@ -26,7 +29,7 @@
         </StackPanel>
         <Frame Grid.Row="1" x:Name="Main" Background="LightBlue"/>
         <StackPanel Grid.Row="2">
-            <Button Content="Open" />
+            <Button Content="Open" Style="{StaticResource ButtonStyle}" />
         </StackPanel>
     </Grid>
 </Window>
