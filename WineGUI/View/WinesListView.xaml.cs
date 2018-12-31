@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WineGUI.View
 {
     /// <summary>
-    /// Interaction logic for Producers.xaml
+    /// Interaction logic for Wines.xaml
     /// </summary>
-    public partial class Producers : UserControl
+    public partial class WinesListView : UserControl
     {
-        public Producers()
+        public WinesListView()
         {
             InitializeComponent();
         }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WineGUI.View;
 
 namespace WineGUI
 {
@@ -23,6 +24,21 @@ namespace WineGUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void WineNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ListContainer.Content = new WinesListView();
+        }
+
+        private void ProducerNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ListContainer.Content = new ProducersListView();
+        }
+
+        private void TypeNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ListContainer.Content = new TypesListView();
         }
     }
 }

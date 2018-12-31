@@ -23,11 +23,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Content="Wines" Style="{StaticResource NavigationButtons}"/>
-            <Button Content="Producers" Style="{StaticResource NavigationButtons}"/>
-            <Button Content="Types" Style="{StaticResource NavigationButtons}"/>
+            <Button x:Name="WineNavBtn" Content="Wines" Style="{StaticResource NavigationButtons}" Click="WineNavBtn_Click"/>
+            <Button x:Name="ProducerNavBtn" Content="Producers" Style="{StaticResource NavigationButtons}" Click="ProducerNavBtn_Click"/>
+            <Button x:Name="TypeNavBtn" Content="Types" Style="{StaticResource NavigationButtons}" Click="TypeNavBtn_Click"/>
         </StackPanel>
-        <Frame Grid.Row="1" x:Name="Main" Background="LightBlue"/>
+        <Frame Grid.Row="1" x:Name="ListContainer" Background="LightBlue" NavigationUIVisibility="Hidden"/>
         <StackPanel Grid.Row="2">
             <Button Content="Open" Style="{StaticResource ButtonStyle}" />
         </StackPanel>

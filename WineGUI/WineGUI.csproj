@@ -55,14 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\Producers.xaml.cs">
-      <DependentUpon>Producers.xaml</DependentUpon>
+    <Compile Include="View\ProducersListView.xaml.cs">
+      <DependentUpon>ProducersListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Types.xaml.cs">
-      <DependentUpon>Types.xaml</DependentUpon>
+    <Compile Include="View\TypesListView.xaml.cs">
+      <DependentUpon>TypesListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Wines.xaml.cs">
-      <DependentUpon>Wines.xaml</DependentUpon>
+    <Compile Include="View\WinesListView.xaml.cs">
+      <DependentUpon>WinesListView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,15 +76,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Producers.xaml">
+    <Page Include="View\ProducersListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Types.xaml">
+    <Page Include="View\TypesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Wines.xaml">
+    <Page Include="View\WinesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
