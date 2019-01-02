@@ -22,6 +22,14 @@
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <ListBox ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}">
-    </ListBox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}"/>
+        <StackPanel Grid.Row="1">
+            <Button Content="Open" Style="{StaticResource ButtonStyle}" />
+        </StackPanel>
+    </Grid>
 </UserControl>

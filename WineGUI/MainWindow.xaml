@@ -10,7 +10,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button x:Name="WineNavBtn" Content="Wines" Style="{StaticResource NavigationButtons}" Click="WineNavBtn_Click"/>
@@ -18,8 +17,5 @@
             <Button x:Name="TypeNavBtn" Content="Types" Style="{StaticResource NavigationButtons}" Click="TypeNavBtn_Click"/>
         </StackPanel>
         <Frame Grid.Row="1" x:Name="ListContainer" NavigationUIVisibility="Hidden"/>
-        <StackPanel Grid.Row="2">
-            <Button Content="Open" Style="{StaticResource ButtonStyle}" />
-        </StackPanel>
     </Grid>
 </Window>
