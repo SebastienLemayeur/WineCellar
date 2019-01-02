@@ -27,7 +27,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}"/>
+        <ListBox Name="WineListBox" Grid.Row="0" ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}"/>
         <StackPanel Grid.Row="1">
             <Button Content="Open" Style="{StaticResource ButtonStyle}" Command="{Binding OpenCommand}" />
         </StackPanel>
