@@ -10,5 +10,18 @@
     <UserControl.DataContext>
         <ViewModels:WinesListViewModel/>
     </UserControl.DataContext>
-    <ListBox ItemsSource="{Binding WineList}" DisplayMemberPath="Name"/>
+    <UserControl.Resources>
+        <DataTemplate x:Key="WineListTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" Text="{Binding Year, StringFormat= ({0})}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ListBox ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}">
+    </ListBox>
 </UserControl>
