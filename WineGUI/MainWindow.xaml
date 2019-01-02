@@ -6,16 +6,6 @@
         xmlns:local="clr-namespace:WineGUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <Style x:Key="ButtonStyle">
-            <Setter Property="Control.FontSize" Value="24"/>
-            <Setter Property="Control.Background" Value="White"/>
-            <Setter Property="Control.Margin" Value="0,5"/>
-        </Style>
-        <Style x:Key="NavigationButtons" BasedOn="{StaticResource ButtonStyle}">
-            <Setter Property="Control.Margin" Value="10,5"/>
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,7 +17,7 @@
             <Button x:Name="ProducerNavBtn" Content="Producers" Style="{StaticResource NavigationButtons}" Click="ProducerNavBtn_Click"/>
             <Button x:Name="TypeNavBtn" Content="Types" Style="{StaticResource NavigationButtons}" Click="TypeNavBtn_Click"/>
         </StackPanel>
-        <Frame Grid.Row="1" x:Name="ListContainer" Background="LightBlue" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Row="1" x:Name="ListContainer" NavigationUIVisibility="Hidden"/>
         <StackPanel Grid.Row="2">
             <Button Content="Open" Style="{StaticResource ButtonStyle}" />
         </StackPanel>
