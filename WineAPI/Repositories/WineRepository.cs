@@ -28,7 +28,8 @@ namespace WineAPI.Repositories
             return await db.Wines.Select(w => new WineSimple
             {
                 Name = w.Name,
-                Year = w.Year
+                Year = w.Year,
+                Id = w.Id
             }).ToListAsync();
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,29 +14,45 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel
+    class WinesListViewModel : ViewModelBase
     {
-        private readonly string baseUri = "https://localhost:44361/api/wines";
+        private readonly string _baseUri = "https://localhost:44361/api/wines";
+
+
         public ICommand OpenCommand { get; }
+        public ObservableCollection<WineSimple> WineList { get; }
+
 
         public WinesListViewModel()
         {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>(baseUri);
+            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>(_baseUri);
             WineList = new ObservableCollection<WineSimple>(wines);
             OpenCommand = new DelegateCommand(OnOpenExecute, OnOpenCanExectute);
         }
 
+        private WineSimple _selectedWine;
+
+        public WineSimple SelectedWine
+        {
+            get { return _selectedWine; }
+            set
+            {
+                _selectedWine = value;
+                OnPropertyChanged();
+                ((DelegateCommand)OpenCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+
         private bool OnOpenCanExectute()
         {
-            return true;
+            return SelectedWine != null;
         }
 
         private void OnOpenExecute()
         {
-            MessageBox.Show("Hi!");
+            MessageBox.Show($"The selected item = {_selectedWine.Id}");
         }
-
-        public ObservableCollection<WineSimple> WineList { get; }
 
 
     }

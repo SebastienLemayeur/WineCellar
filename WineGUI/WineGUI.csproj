@@ -72,6 +72,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\ApiHelper.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
     <Compile Include="View\ProducersListView.xaml.cs">
       <DependentUpon>ProducersListView.xaml</DependentUpon>
