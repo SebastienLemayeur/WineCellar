@@ -22,6 +22,12 @@ namespace WineAPI.Controllers
             return Ok(await repository.GetFullDetails());
         }
 
+        [HttpGet("{id}")]
+        public override async Task<IActionResult> Get(int id)
+        {
+            return Ok(await repository.GetFullDetails(id));
+        }
+
         [HttpGet]
         [Route("simple")]
         public async Task<IActionResult> GetSimple()

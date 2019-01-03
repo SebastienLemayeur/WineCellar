@@ -18,9 +18,22 @@ namespace WineAPI.Repositories
         public async Task<List<Wine>> GetFullDetails()
         {
             return await GetAll()
+                .ToListAsync();
+        }
+
+        public async Task<Wine> GetFullDetails(int Id)
+        {
+            return await db.Set<Wine>()
                 .Include(w => w.Producer)
                 .Include(w => w.Type)
-                .ToListAsync();
+                .FirstOrDefaultAsync(w => w.Id == Id);
+        }
+
+        public override IQueryable<Wine> GetAll()
+        {
+            return db.Set<Wine>().AsNoTracking()
+                .Include(w => w.Producer)
+                .Include(w => w.Type);
         }
 
         public async Task<List<WineSimple>> GetSimple()
