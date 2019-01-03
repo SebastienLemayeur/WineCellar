@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Frame  Grid.Row="1" Grid.Column="0" x:Name="ListContainer" NavigationUIVisibility="Hidden" Margin="5,5"/>
-            <Frame Grid.Row="1" Grid.Column="0" x:Name="DetailContainer" NavigationUIVisibility="Hidden" Margin="5,5"/>
+            <Frame Grid.Row="1" Grid.Column="1" x:Name="DetailContainer" NavigationUIVisibility="Hidden" Margin="5,5"/>
         </Grid>
         
     </Grid>

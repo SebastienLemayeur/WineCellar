@@ -15,7 +15,6 @@ namespace WineGUI.ViewModel
     {
         private readonly string _baseUri = "https://localhost:44361/api/wines";
         private IEventAggregator _eventAggregator;
-        private Wine _wine;
 
         public WineDetailViewModel()
         {
@@ -26,17 +25,20 @@ namespace WineGUI.ViewModel
         private void OnOpenWineDetailView(int wineId)
         {
             _wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/{wineId}");
-            MessageBox.Show($"The selected item = {_wine.Id}. Publisher: {_wine.Producer.Name}");
+            MessageBox.Show($"{WineFull.DrinkBefore}");
         }
 
-        public Wine Wine
+        private Wine _wine;
+
+        public Wine WineFull
         {
             get { return _wine; }
-            private set
+            set
             {
                 _wine = value;
                 OnPropertyChanged();
             }
         }
+
     }
 }
