@@ -75,12 +75,16 @@
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WineDetailViewModel.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
     <Compile Include="View\ProducersListView.xaml.cs">
       <DependentUpon>ProducersListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TypesListView.xaml.cs">
       <DependentUpon>TypesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WineDetailView.xaml.cs">
+      <DependentUpon>WineDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WinesListView.xaml.cs">
       <DependentUpon>WinesListView.xaml</DependentUpon>
@@ -102,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TypesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WineDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
