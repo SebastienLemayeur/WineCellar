@@ -29,6 +29,8 @@ namespace WineGUI
         private void WineNavBtn_Click(object sender, RoutedEventArgs e)
         {
             ListContainer.Content = new WinesListView();
+            DetailContainer.Content = new WineDetailView();
+
         }
 
         private void ProducerNavBtn_Click(object sender, RoutedEventArgs e)

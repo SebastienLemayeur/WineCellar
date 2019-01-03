@@ -28,7 +28,7 @@ namespace WineGUI.ViewModel
 
         public WinesListViewModel()
         {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>(_baseUri);
+            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/simple");
             WineList = new ObservableCollection<WineSimple>(wines);
             OpenCommand = new DelegateCommand(OnOpenExecute, OnOpenCanExectute);
             _eventAggregator = EventAggregatorSingleton.Instance;
@@ -55,7 +55,6 @@ namespace WineGUI.ViewModel
 
         private void OnOpenExecute()
         {
-            MessageBox.Show($"The selected item = {_selectedWine.Id}");
             if (_selectedWine != null)
             {
                 _eventAggregator.GetEvent<OpenWineDetailViewEvent>()
