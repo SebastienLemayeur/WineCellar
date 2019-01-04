@@ -17,8 +17,6 @@ namespace WineGUI.ViewModel
         private readonly string _baseUri = "https://localhost:44361/api";
         private IEventAggregator _eventAggregator;
 
-        public ObservableCollection<Type> TypeList { get; }
-
         public WineDetailViewModel()
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
@@ -30,7 +28,7 @@ namespace WineGUI.ViewModel
             Wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
 
             IEnumerable<Producer> producers = ApiHelper.GetApiResult<IEnumerable<Producer>>($"{_baseUri}/producers");
-            ProducerList = new ObservableCollection<Producer>(producers);
+            ProducersList = new ObservableCollection<Producer>(producers);
 
             IEnumerable<WineType> types = ApiHelper.GetApiResult<IEnumerable<WineType>>($"{_baseUri}/types");
             TypesList = new ObservableCollection<WineType>(types);
@@ -48,14 +46,14 @@ namespace WineGUI.ViewModel
             }
         }
 
-        private ObservableCollection<Producer> _producerList;
+        private ObservableCollection<Producer> _producersList;
 
-        public ObservableCollection<Producer> ProducerList
+        public ObservableCollection<Producer> ProducersList
         {
-            get { return _producerList; }
+            get { return _producersList; }
             set
             {
-                _producerList = value;
+                _producersList = value;
                 OnPropertyChanged();
             }
 
