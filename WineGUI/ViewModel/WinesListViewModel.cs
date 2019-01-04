@@ -25,6 +25,7 @@ namespace WineGUI.ViewModel
 
         public ICommand AddWineCommand { get; }
         public ICommand DeleteWineCommand { get; }
+        private AddWineWindow _addWineWindow { get; set; }
 
 
         public WinesListViewModel()
@@ -49,14 +50,15 @@ namespace WineGUI.ViewModel
 
         private void OnAddWineExecute()
         {
-            var addWindow = new AddWineWindow();
-            addWindow.Show();
+            _addWineWindow = new AddWineWindow();
+            _addWineWindow.Show();
         }
 
         private void UpdateNavigation(WineSimple wineSimple)
         {
             //to do: calls API again, better might be just updating the WineList with the item..
             GetWineList();
+            if (_addWineWindow != null && wineSimple.Id == 0) _addWineWindow.Close();
         }
 
         private void GetWineList()
