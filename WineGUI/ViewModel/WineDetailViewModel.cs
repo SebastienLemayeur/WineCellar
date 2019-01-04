@@ -81,6 +81,7 @@ namespace WineGUI.ViewModel
             {
                 _producersList = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Wine));
             }
 
         }
@@ -94,9 +95,9 @@ namespace WineGUI.ViewModel
             {
                 _typesList = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Wine));
             }
         }
-
 
 
     }

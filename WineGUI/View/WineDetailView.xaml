@@ -39,11 +39,13 @@
         </Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Producer :" Margin="5"/>
-            <ComboBox ItemsSource="{Binding ProducersList, Mode=TwoWay}" Name="ProdData" DisplayMemberPath="Name" Margin="5" SelectedItem="{Binding Wine.Producer}" />
+            <ComboBox ItemsSource="{Binding ProducersList}" Name="ProdData" DisplayMemberPath="Name" 
+                      Margin="5" SelectedValue="{Binding Wine.ProducerId, Mode=TwoWay}" SelectedValuePath="Id"/>
         </StackPanel>
         <StackPanel Margin="5">
             <TextBlock Text="Type : " Margin="5"/>
-            <ComboBox ItemsSource="{Binding TypesList, Mode=TwoWay}" Name="TypeData" DisplayMemberPath="Type" Margin="5" SelectedItem="{Binding Wine.Type}" />
+            <ComboBox ItemsSource="{Binding TypesList}" Name="TypeData" DisplayMemberPath="Type" 
+                      Margin="5" SelectedValue="{Binding Wine.TypeId, Mode=TwoWay}" SelectedValuePath="Id"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Command="{Binding SaveCommand}" />
