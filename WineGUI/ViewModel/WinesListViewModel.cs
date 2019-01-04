@@ -44,7 +44,7 @@ namespace WineGUI.ViewModel
 
         private async void OnDeleteExecute()
         {
-            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/_selectedWine.Id");
+            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/{_selectedWine.Id}");
             UpdateNavigation(_selectedWine);
         }
 
