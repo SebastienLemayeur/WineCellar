@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using WineGUI.Event;
 using WineGUI.Helpers;
+using WineGUI.View;
 using WineLib.DTO;
 using WineLib.Models;
 
@@ -48,7 +49,8 @@ namespace WineGUI.ViewModel
 
         private void OnAddWineExecute()
         {
-            throw new NotImplementedException();
+            var addWindow = new AddWineWindow();
+            addWindow.Show();
         }
 
         private void UpdateNavigation(WineSimple wineSimple)
@@ -86,8 +88,9 @@ namespace WineGUI.ViewModel
                 _selectedWine = value;
                 OnPropertyChanged();
                 ((DelegateCommand)DeleteWineCommand).RaiseCanExecuteChanged();
+                int wineId = _selectedWine == null ? 0 : _selectedWine.Id;
                 _eventAggregator.GetEvent<OpenWineDetailViewEvent>()
-                    .Publish(_selectedWine.Id);
+                    .Publish(wineId);
             }
         }
 

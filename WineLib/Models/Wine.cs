@@ -20,7 +20,7 @@ namespace WineLib.Models
 
         public int DrinkBefore { get; set; }
 
-        public DateTime PurchasedOn { get; set; }
+        public DateTime PurchasedOn { get; set; } = DateTime.Now;
 
         public int TypeId { get; set; }
         public WineType Type{ get; set; }

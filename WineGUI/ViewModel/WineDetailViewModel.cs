@@ -27,22 +27,44 @@ namespace WineGUI.ViewModel
             _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            OnOpenWineDetailView(0);
+            Wine = new Wine();
         }
 
         private bool OnSaveCanExecute()
         {
             //TO DO also add validation and has changes
-            return Wine != null;
+            //return Wine != null;
+            return true;
         }
 
         private async void OnSaveExecute()
         {
-            //This is only for saving. Need to add Post for adding new wine.
+            if (Wine.Id != 0) await UpdateWine();
+            else await SaveWine();
+        }
+
+        private async Task UpdateWine()
+        {
             await ApiHelper.PutCallAPI<Wine, Wine>($"{_baseUri}/wines/{Wine.Id}", Wine);
 
             _eventAggregator.GetEvent<SavedWineEvent>()
-                    .Publish(new WineSimple {
+                    .Publish(new WineSimple
+                    {
                         Id = Wine.Id,
+                        Name = Wine.Name,
+                        Year = Wine.Year
+                    });
+        }
+
+        private async Task SaveWine()
+        {
+            await ApiHelper.PostCallAPI<Wine, Wine>($"{_baseUri}/wines", Wine);
+
+            _eventAggregator.GetEvent<SavedWineEvent>()
+                    .Publish(new WineSimple
+                    {
+                        Id = 0,
                         Name = Wine.Name,
                         Year = Wine.Year
                     });
@@ -50,7 +72,7 @@ namespace WineGUI.ViewModel
 
         private void OnOpenWineDetailView(int wineId)
         {
-            Wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
+            if (wineId != 0) Wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
 
             IEnumerable<Producer> producers = ApiHelper.GetApiResult<IEnumerable<Producer>>($"{_baseUri}/producers");
             ProducersList = new ObservableCollection<Producer>(producers);

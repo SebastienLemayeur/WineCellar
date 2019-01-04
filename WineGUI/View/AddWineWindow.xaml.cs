@@ -22,6 +22,7 @@ namespace WineGUI.View
         public AddWineWindow()
         {
             InitializeComponent();
+            AddContainer.Content = new WineDetailView();
         }
     }
 }
