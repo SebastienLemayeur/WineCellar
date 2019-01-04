@@ -32,8 +32,8 @@ namespace WineGUI.ViewModel
             IEnumerable<Producer> producers = ApiHelper.GetApiResult<IEnumerable<Producer>>($"{_baseUri}/producers");
             ProducerList = new ObservableCollection<Producer>(producers);
 
-            IEnumerable<Type> types = ApiHelper.GetApiResult<IEnumerable<Type>>($"{_baseUri}/types");
-            TypesList = new ObservableCollection<Type>(types);
+            IEnumerable<WineType> types = ApiHelper.GetApiResult<IEnumerable<WineType>>($"{_baseUri}/types");
+            TypesList = new ObservableCollection<WineType>(types);
         }
 
         private Wine _wine;
@@ -61,9 +61,9 @@ namespace WineGUI.ViewModel
 
         }
 
-        private ObservableCollection<Type> _typesList;
+        private ObservableCollection<WineType> _typesList;
 
-        public ObservableCollection<Type> TypesList
+        public ObservableCollection<WineType> TypesList
         {
             get { return _typesList; }
             set
