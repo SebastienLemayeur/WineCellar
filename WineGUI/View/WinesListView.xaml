@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
         <ListBox Name="WineListBox" Grid.Row="0" ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}" SelectedItem="{Binding SelectedWine, Mode=TwoWay}"/>
         <StackPanel Grid.Row="1">
-            <Button Content="Open" Style="{StaticResource ButtonStyle}" Command="{Binding OpenCommand}" />
+            <Button Content="Add Wine" Style="{StaticResource ButtonStyle}" Command="{Binding AddWineCommand}" />
         </StackPanel>
     </Grid>
 </UserControl>

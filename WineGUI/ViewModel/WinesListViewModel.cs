@@ -22,15 +22,20 @@ namespace WineGUI.ViewModel
 
         private IEventAggregator _eventAggregator;
 
-        public ICommand OpenCommand { get; }
+        public ICommand AddWineCommand { get; }
 
 
         public WinesListViewModel()
         {
             GetWineList();
-            OpenCommand = new DelegateCommand(OnOpenExecute, OnOpenCanExectute);
+            AddWineCommand = new DelegateCommand(OnAddWineExecute);
             _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<SavedWineEvent>().Subscribe(UpdateNavigation);
+        }
+
+        private void OnAddWineExecute()
+        {
+            throw new NotImplementedException();
         }
 
         private void UpdateNavigation(WineSimple wineSimple)
@@ -67,20 +72,6 @@ namespace WineGUI.ViewModel
             {
                 _selectedWine = value;
                 OnPropertyChanged();
-                ((DelegateCommand)OpenCommand).RaiseCanExecuteChanged();
-            }
-        }
-
-
-        private bool OnOpenCanExectute()
-        {
-            return SelectedWine != null;
-        }
-
-        private void OnOpenExecute()
-        {
-            if (_selectedWine != null)
-            {
                 _eventAggregator.GetEvent<OpenWineDetailViewEvent>()
                     .Publish(_selectedWine.Id);
             }
