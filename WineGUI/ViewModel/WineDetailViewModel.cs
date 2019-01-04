@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using Prism.Commands;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using WineGUI.Event;
 using WineGUI.Helpers;
 using WineLib.Models;
@@ -17,10 +19,25 @@ namespace WineGUI.ViewModel
         private readonly string _baseUri = "https://localhost:44361/api";
         private IEventAggregator _eventAggregator;
 
+        public ICommand SaveCommand { get; }
+
         public WineDetailViewModel()
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            //TO DO also add validation and has changes
+            return Wine != null;
+        }
+
+        private async void OnSaveExecute()
+        {
+            //This is only for saving. Need to add Post for adding new wine.
+            await ApiHelper.PutCallAPI<Wine, Wine>($"{_baseUri}/wines/{Wine.Id}", Wine);
         }
 
         private void OnOpenWineDetailView(int wineId)
@@ -43,6 +60,7 @@ namespace WineGUI.ViewModel
             {
                 _wine = value;
                 OnPropertyChanged();
+                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
         }
 

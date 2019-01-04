@@ -39,14 +39,14 @@
         </Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Producer :" Margin="5"/>
-            <ComboBox ItemsSource="{Binding ProducersList}" DisplayMemberPath="Name" Name="ProdData" Margin="5" SelectedIndex="0"/>
+            <ComboBox ItemsSource="{Binding ProducersList, Mode=TwoWay}" DisplayMemberPath="Name" Name="ProdData" Margin="5" SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Margin="5">
             <TextBlock Text="Type : " Margin="5"/>
-            <ComboBox ItemsSource="{Binding TypesList}" DisplayMemberPath="Type" Name="TypeData" Margin="5" SelectedIndex="0"/>
+            <ComboBox ItemsSource="{Binding TypesList, Mode=TwoWay}" DisplayMemberPath="Type" Name="TypeData" Margin="5" SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Click="SaveBtn_Click" />
+            <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Command="{Binding SaveCommand}" />
             <Button x:Name="DelBtn" Content="Delete" Style="{StaticResource NavigationButtons}"/>
         </StackPanel>
     </StackPanel>
