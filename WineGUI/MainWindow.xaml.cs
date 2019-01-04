@@ -36,11 +36,13 @@ namespace WineGUI
         private void ProducerNavBtn_Click(object sender, RoutedEventArgs e)
         {
             ListContainer.Content = new ProducersListView();
+            DetailContainer.Content = new ProducersListView();
         }
 
         private void TypeNavBtn_Click(object sender, RoutedEventArgs e)
         {
             ListContainer.Content = new TypesListView();
+            DetailContainer.Content = new TypesListView();
         }
     }
 }
