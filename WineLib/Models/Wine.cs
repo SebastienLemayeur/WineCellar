@@ -8,16 +8,7 @@ namespace WineLib.Models
     {
         [Required(ErrorMessage = "A wine must have a name")]
         [StringLength(100, ErrorMessage = "The name cannot exceed 100 characters")]
-
-
-        private string _name;
-
-        public string Name
-        { get { return _name; }
-            set {
-                _name = value;
-                OnPropertyChanged();
-            } }
+        public string Name { get; set; }
 
         public decimal Price { get; set; }
 
