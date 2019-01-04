@@ -40,9 +40,10 @@ namespace WineGUI.ViewModel
             return SelectedWine != null;
         }
 
-        private void OnDeleteExecute()
+        private async void OnDeleteExecute()
         {
-            throw new NotImplementedException();
+            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/_selectedWine.Id");
+            UpdateNavigation(_selectedWine);
         }
 
         private void OnAddWineExecute()
