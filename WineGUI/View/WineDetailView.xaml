@@ -25,17 +25,17 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Naam :" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Name="txtWijnNaam" Margin="5" Text="{Binding WineFull.Name, Mode=TwoWay}"/>
+            <TextBox Grid.Column="1" Name="txtWijnNaam" Margin="5" Text="{Binding Wine.Name, Mode=TwoWay}"/>
             <TextBlock Grid.Row="1" Text="Jaar :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="txtWijnYear" Margin="5" Text="{Binding WineFull.Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="txtWijnYear" Margin="5" Text="{Binding Wine.Year, Mode=TwoWay}"/>
             <TextBlock Grid.Row="2" Text="Prijs :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Name="txtWijnPrice" Margin="5" Text="{Binding WineFull.Price, Mode=TwoWay}"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Name="txtWijnPrice" Margin="5" Text="{Binding Wine.Price, Mode=TwoWay}"/>
             <TextBlock Grid.Row="3" Text="Aantal :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="2" Name="txtWijnAmount" Margin="5" Text="{Binding WineFull.Amount, Mode=TwoWay}"/>
+            <TextBox Grid.Row="3" Grid.Column="2" Name="txtWijnAmount" Margin="5" Text="{Binding Wine.Amount, Mode=TwoWay}"/>
             <TextBlock Grid.Row="4" Text="Drinken voor :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4" Grid.Column="2" Name="txtWijnDrinkBeofre" Margin="5" Text="{Binding WineFull.DrinkBefore, Mode=TwoWay}"/>
+            <TextBox Grid.Row="4" Grid.Column="2" Name="txtWijnDrinkBeofre" Margin="5" Text="{Binding Wine.DrinkBefore, Mode=TwoWay}"/>
             <TextBlock Grid.Row="5" Text="Gekocht op :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="5" Grid.Column="2" Name="txcWijnPurchasedOn" Margin="5" Text="{Binding WineFull.PurchasedOn, Mode=TwoWay}"/>
+            <DatePicker Grid.Row="5" Grid.Column="2" Height="25" HorizontalAlignment="Left" Name="dateWijnPurchasedOn" VerticalAlignment="Top" Width="115" Margin="5" SelectedDate="{Binding Wine.PurchasedOn, Mode=TwoWay}" DisplayDate="{Binding Wine.PurchasedOn, Mode=TwoWay}"/>
         </Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Producer :" Margin="5"/>
@@ -43,7 +43,7 @@
         </StackPanel>
         <StackPanel Margin="5">
             <TextBlock Text="Type : " Margin="5"/>
-            <ComboBox Name="TypeData" Margin="5" SelectedIndex="0"/>
+            <ComboBox ItemsSource="{Binding }"  Name="TypeData" Margin="5" SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Click="SaveBtn_Click" />

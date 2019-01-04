@@ -13,7 +13,7 @@ namespace WineGUI.ViewModel
 {
     class WineDetailViewModel : ViewModelBase
     {
-        private readonly string _baseUri = "https://localhost:44361/api/wines";
+        private readonly string _baseUri = "https://localhost:44361/api";
         private IEventAggregator _eventAggregator;
 
         public WineDetailViewModel()
@@ -24,13 +24,12 @@ namespace WineGUI.ViewModel
 
         private void OnOpenWineDetailView(int wineId)
         {
-            WineFull = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/{wineId}");
-            MessageBox.Show($"{WineFull.DrinkBefore}");
+            Wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
         }
 
         private Wine _wine;
 
-        public Wine WineFull
+        public Wine Wine
         {
             get { return _wine; }
             set
