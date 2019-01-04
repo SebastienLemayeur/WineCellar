@@ -23,16 +23,40 @@ namespace WineGUI.ViewModel
         private IEventAggregator _eventAggregator;
 
         public ICommand OpenCommand { get; }
-        public ObservableCollection<WineSimple> WineList { get; }
 
 
         public WinesListViewModel()
         {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/simple");
-            WineList = new ObservableCollection<WineSimple>(wines);
+            GetWineList();
             OpenCommand = new DelegateCommand(OnOpenExecute, OnOpenCanExectute);
             _eventAggregator = EventAggregatorSingleton.Instance;
+            _eventAggregator.GetEvent<SavedWineEvent>().Subscribe(UpdateNavigation);
         }
+
+        private void UpdateNavigation(WineSimple wineSimple)
+        {
+            //to do: calls API again, better might be just updating the WineList with the item..
+            GetWineList();
+        }
+
+        private void GetWineList()
+        {
+            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/simple");
+            WineList = new ObservableCollection<WineSimple>(wines);
+        }
+
+        private ObservableCollection<WineSimple> _wineList;
+
+        public ObservableCollection<WineSimple> WineList
+        {
+            get { return _wineList; }
+            set
+            {
+                _wineList = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private WineSimple _selectedWine;
 

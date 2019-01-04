@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using WineGUI.Event;
 using WineGUI.Helpers;
+using WineLib.DTO;
 using WineLib.Models;
 
 namespace WineGUI.ViewModel
@@ -38,6 +39,13 @@ namespace WineGUI.ViewModel
         {
             //This is only for saving. Need to add Post for adding new wine.
             await ApiHelper.PutCallAPI<Wine, Wine>($"{_baseUri}/wines/{Wine.Id}", Wine);
+
+            _eventAggregator.GetEvent<SavedWineEvent>()
+                    .Publish(new WineSimple {
+                        Id = Wine.Id,
+                        Name = Wine.Name,
+                        Year = Wine.Year
+                    });
         }
 
         private void OnOpenWineDetailView(int wineId)
