@@ -24,7 +24,7 @@ namespace WineGUI.ViewModel
 
         private void OnOpenWineDetailView(int wineId)
         {
-            _wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/{wineId}");
+            WineFull = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/{wineId}");
             MessageBox.Show($"{WineFull.DrinkBefore}");
         }
 
@@ -39,6 +39,5 @@ namespace WineGUI.ViewModel
                 OnPropertyChanged();
             }
         }
-
     }
 }

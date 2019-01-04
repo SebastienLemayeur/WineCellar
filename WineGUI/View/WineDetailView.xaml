@@ -46,7 +46,7 @@
             <ComboBox Name="TypeData" Margin="5" SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" />
+            <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Click="SaveBtn_Click" />
             <Button x:Name="DelBtn" Content="Delete" Style="{StaticResource NavigationButtons}"/>
         </StackPanel>
     </StackPanel>

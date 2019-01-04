@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace WineLib.Models
@@ -7,7 +8,16 @@ namespace WineLib.Models
     {
         [Required(ErrorMessage = "A wine must have a name")]
         [StringLength(100, ErrorMessage = "The name cannot exceed 100 characters")]
-        public string Name { get; set; }
+
+
+        private string _name;
+
+        public string Name
+        { get { return _name; }
+            set {
+                _name = value;
+                OnPropertyChanged();
+            } }
 
         public decimal Price { get; set; }
 
