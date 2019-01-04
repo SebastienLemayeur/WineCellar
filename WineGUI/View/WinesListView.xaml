@@ -30,6 +30,7 @@
         <ListBox Name="WineListBox" Grid.Row="0" ItemsSource="{Binding WineList}" ItemTemplate="{StaticResource WineListTemplate}" SelectedItem="{Binding SelectedWine, Mode=TwoWay}"/>
         <StackPanel Grid.Row="1">
             <Button Content="Add Wine" Style="{StaticResource ButtonStyle}" Command="{Binding AddWineCommand}" />
+            <Button Content="Delete" Style="{StaticResource ButtonStyle}" Command="{Binding DeleteWineCommand}" />
         </StackPanel>
     </Grid>
 </UserControl>

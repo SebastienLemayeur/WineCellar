@@ -49,7 +49,6 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Command="{Binding SaveCommand}" />
-            <Button x:Name="DelBtn" Content="Delete" Style="{StaticResource NavigationButtons}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
