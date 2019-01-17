@@ -17,7 +17,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel : ViewModelBase
+    class WinesListViewModel : BaseViewModel
     {
         private readonly string _baseUri = "https://localhost:44361/api/wines";
 
