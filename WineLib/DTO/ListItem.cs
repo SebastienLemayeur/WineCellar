@@ -8,6 +8,6 @@ namespace WineLib.DTO
     public class ListItem : EntityBase
     {
         public string Name { get; set; }
-        public int Detail { get; set; } = 1900;
+        public string Detail { get; set; }
     }
 }
