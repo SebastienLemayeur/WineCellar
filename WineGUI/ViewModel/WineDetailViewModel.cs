@@ -15,7 +15,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WineDetailViewModel : BaseViewModel
+    class WineDetailViewModel : DetailBaseViewModel
     {
         private readonly string _baseUri = "https://localhost:44361/api";
         private IEventAggregator _eventAggregator;

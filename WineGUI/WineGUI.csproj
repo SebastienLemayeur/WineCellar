@@ -81,6 +81,7 @@
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\DetailBaseViewModel.cs" />
     <Compile Include="ViewModel\WineDetailViewModel.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
     <Compile Include="View\AddWineWindow.xaml.cs">
