@@ -77,6 +77,7 @@
     </ApplicationDefinition>
     <Compile Include="Event\DeletedWineEvent.cs" />
     <Compile Include="Event\OpenWineDetailViewEvent.cs" />
+    <Compile Include="Event\SavedDetailObjectEvent.cs" />
     <Compile Include="Event\SavedWineEvent.cs" />
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
