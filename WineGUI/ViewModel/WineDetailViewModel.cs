@@ -15,7 +15,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WineDetailViewModel : DetailBaseViewModel<Wine>
+    class WineDetailViewModel : BaseDetailViewModel<Wine>
     {
 
         public WineDetailViewModel()

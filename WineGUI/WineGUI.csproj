@@ -78,11 +78,10 @@
     <Compile Include="Event\DeletedWineEvent.cs" />
     <Compile Include="Event\OpenWineDetailViewEvent.cs" />
     <Compile Include="Event\SavedDetailObjectEvent.cs" />
-    <Compile Include="Event\SavedWineEvent.cs" />
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\DetailBaseViewModel.cs" />
+    <Compile Include="ViewModel\BaseDetailViewModel.cs" />
     <Compile Include="ViewModel\WineDetailViewModel.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
     <Compile Include="View\AddWineWindow.xaml.cs">
