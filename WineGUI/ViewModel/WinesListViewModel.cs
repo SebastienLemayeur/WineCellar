@@ -26,7 +26,7 @@ namespace WineGUI.ViewModel
 
         public WinesListViewModel()
         {
-            GetWineList();
+            GetItemList();
             AddWineCommand = new DelegateCommand(OnAddWineExecute);
             DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
             _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(UpdateNavigation);
@@ -54,26 +54,8 @@ namespace WineGUI.ViewModel
         private void UpdateNavigation(int detailObjectId)
         {
             //to do: calls API again, better might be just updating the WineList with the item..
-            GetWineList();
+            GetItemList();
             if (_addWineWindow != null && detailObjectId == 0) _addWineWindow.Close();
-        }
-
-        private void GetWineList()
-        {
-            IEnumerable<ListItem> wines = ApiHelper.GetApiResult<IEnumerable<ListItem>>($"{_baseUri}/wines/simple");
-            WineList = new ObservableCollection<ListItem>(wines);
-        }
-
-        private ObservableCollection<ListItem> _wineList;
-
-        public ObservableCollection<ListItem> WineList
-        {
-            get { return _wineList; }
-            set
-            {
-                _wineList = value;
-                OnPropertyChanged();
-            }
         }
 
 
