@@ -26,8 +26,14 @@ namespace WineGUI.ViewModel
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
+            _eventAggregator.GetEvent<DeletedWineEvent>().Subscribe(OnDeleteWine);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             OnOpenWineDetailView(0);
+            Wine = new Wine();
+        }
+
+        private void OnDeleteWine()
+        {
             Wine = new Wine();
         }
 
