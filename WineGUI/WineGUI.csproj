@@ -80,6 +80,7 @@
     <Compile Include="Event\SavedDetailObjectEvent.cs" />
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
+    <Compile Include="ViewModel\BaseListViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseDetailViewModel.cs" />
     <Compile Include="ViewModel\WineDetailViewModel.cs" />

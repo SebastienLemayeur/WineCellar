@@ -17,12 +17,8 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel : BaseViewModel
+    class WinesListViewModel : BaseListViewModel
     {
-        private readonly string _baseUri = "https://localhost:44361/api/wines";
-
-        private IEventAggregator _eventAggregator;
-
         public ICommand AddWineCommand { get; }
         public ICommand DeleteWineCommand { get; }
         private AddWineWindow _addWineWindow { get; set; }
@@ -33,7 +29,6 @@ namespace WineGUI.ViewModel
             GetWineList();
             AddWineCommand = new DelegateCommand(OnAddWineExecute);
             DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
-            _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(UpdateNavigation);
         }
 
@@ -44,7 +39,7 @@ namespace WineGUI.ViewModel
 
         private async void OnDeleteExecute()
         {
-            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/{_selectedWine.Id}");
+            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/wines/{_selectedWine.Id}");
             _eventAggregator.GetEvent<DeletedWineEvent>()
                     .Publish();
             UpdateNavigation(_selectedWine.Id);
@@ -65,7 +60,7 @@ namespace WineGUI.ViewModel
 
         private void GetWineList()
         {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/simple");
+            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/wines/simple");
             WineList = new ObservableCollection<WineSimple>(wines);
         }
 
