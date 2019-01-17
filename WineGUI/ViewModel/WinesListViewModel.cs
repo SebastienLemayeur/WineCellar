@@ -60,13 +60,13 @@ namespace WineGUI.ViewModel
 
         private void GetWineList()
         {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/wines/simple");
-            WineList = new ObservableCollection<WineSimple>(wines);
+            IEnumerable<ListItem> wines = ApiHelper.GetApiResult<IEnumerable<ListItem>>($"{_baseUri}/wines/simple");
+            WineList = new ObservableCollection<ListItem>(wines);
         }
 
-        private ObservableCollection<WineSimple> _wineList;
+        private ObservableCollection<ListItem> _wineList;
 
-        public ObservableCollection<WineSimple> WineList
+        public ObservableCollection<ListItem> WineList
         {
             get { return _wineList; }
             set
@@ -77,9 +77,9 @@ namespace WineGUI.ViewModel
         }
 
 
-        private WineSimple _selectedWine;
+        private ListItem _selectedWine;
 
-        public WineSimple SelectedWine
+        public ListItem SelectedWine
         {
             get { return _selectedWine; }
             set

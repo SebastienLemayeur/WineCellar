@@ -36,12 +36,12 @@ namespace WineAPI.Repositories
                 .Include(w => w.Type);
         }
 
-        public async Task<List<WineSimple>> GetSimple()
+        public async Task<List<ListItem>> GetSimple()
         {
-            return await db.Wines.Select(w => new WineSimple
+            return await db.Wines.Select(w => new ListItem
             {
                 Name = w.Name,
-                Year = w.Year,
+                Detail = w.Year,
                 Id = w.Id
             }).ToListAsync();
         }

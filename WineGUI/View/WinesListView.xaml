@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" FontWeight="Bold" />
-                <TextBlock Grid.Column="1" Text="{Binding Year, Mode=TwoWay, StringFormat= ({0})}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Detail, Mode=TwoWay, StringFormat= ({0})}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
