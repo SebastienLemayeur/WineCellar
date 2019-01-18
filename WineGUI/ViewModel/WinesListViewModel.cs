@@ -17,12 +17,8 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel : ViewModelBase
+    class WinesListViewModel : BaseListViewModel
     {
-        private readonly string _baseUri = "https://localhost:44361/api/wines";
-
-        private IEventAggregator _eventAggregator;
-
         public ICommand AddWineCommand { get; }
         public ICommand DeleteWineCommand { get; }
         private AddWineWindow _addWineWindow { get; set; }
@@ -30,11 +26,10 @@ namespace WineGUI.ViewModel
 
         public WinesListViewModel()
         {
-            GetWineList();
+            GetItemList();
             AddWineCommand = new DelegateCommand(OnAddWineExecute);
             DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
-            _eventAggregator = EventAggregatorSingleton.Instance;
-            _eventAggregator.GetEvent<SavedWineEvent>().Subscribe(UpdateNavigation);
+            _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(UpdateNavigation);
         }
 
         private bool OnCanDeleteExecute()
@@ -44,10 +39,10 @@ namespace WineGUI.ViewModel
 
         private async void OnDeleteExecute()
         {
-            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/{_selectedWine.Id}");
+            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/wines/{_selectedWine.Id}");
             _eventAggregator.GetEvent<DeletedWineEvent>()
                     .Publish();
-            UpdateNavigation(_selectedWine);
+            UpdateNavigation(_selectedWine.Id);
         }
 
         private void OnAddWineExecute()
@@ -56,35 +51,17 @@ namespace WineGUI.ViewModel
             _addWineWindow.Show();
         }
 
-        private void UpdateNavigation(WineSimple wineSimple)
+        private void UpdateNavigation(int detailObjectId)
         {
             //to do: calls API again, better might be just updating the WineList with the item..
-            GetWineList();
-            if (_addWineWindow != null && wineSimple.Id == 0) _addWineWindow.Close();
-        }
-
-        private void GetWineList()
-        {
-            IEnumerable<WineSimple> wines = ApiHelper.GetApiResult<IEnumerable<WineSimple>>($"{_baseUri}/simple");
-            WineList = new ObservableCollection<WineSimple>(wines);
-        }
-
-        private ObservableCollection<WineSimple> _wineList;
-
-        public ObservableCollection<WineSimple> WineList
-        {
-            get { return _wineList; }
-            set
-            {
-                _wineList = value;
-                OnPropertyChanged();
-            }
+            GetItemList();
+            if (_addWineWindow != null && detailObjectId == 0) _addWineWindow.Close();
         }
 
 
-        private WineSimple _selectedWine;
+        private ListItem _selectedWine;
 
-        public WineSimple SelectedWine
+        public ListItem SelectedWine
         {
             get { return _selectedWine; }
             set

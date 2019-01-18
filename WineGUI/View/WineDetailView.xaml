@@ -25,27 +25,27 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Naam :" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Name="txtWijnNaam" Margin="5" Text="{Binding Wine.Name, Mode=TwoWay}"/>
+            <TextBox Grid.Column="1" Name="txtWijnNaam" Margin="5" Text="{Binding DetailObject.Name, Mode=TwoWay}"/>
             <TextBlock Grid.Row="1" Text="Jaar :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="txtWijnYear" Margin="5" Text="{Binding Wine.Year, Mode=TwoWay}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="txtWijnYear" Margin="5" Text="{Binding DetailObject.Year, Mode=TwoWay}"/>
             <TextBlock Grid.Row="2" Text="Prijs :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Name="txtWijnPrice" Margin="5" Text="{Binding Wine.Price, Mode=TwoWay}"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Name="txtWijnPrice" Margin="5" Text="{Binding DetailObject.Price, Mode=TwoWay}"/>
             <TextBlock Grid.Row="3" Text="Aantal :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="2" Name="txtWijnAmount" Margin="5" Text="{Binding Wine.Amount, Mode=TwoWay}"/>
+            <TextBox Grid.Row="3" Grid.Column="2" Name="txtWijnAmount" Margin="5" Text="{Binding DetailObject.Amount, Mode=TwoWay}"/>
             <TextBlock Grid.Row="4" Text="Drinken voor :" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4" Grid.Column="2" Name="txtWijnDrinkBeofre" Margin="5" Text="{Binding Wine.DrinkBefore, Mode=TwoWay}"/>
+            <TextBox Grid.Row="4" Grid.Column="2" Name="txtWijnDrinkBeofre" Margin="5" Text="{Binding DetailObject.DrinkBefore, Mode=TwoWay}"/>
             <TextBlock Grid.Row="5" Text="Gekocht op :" VerticalAlignment="Center"/>
             <DatePicker Grid.Row="5" Grid.Column="2" Height="25" HorizontalAlignment="Left" Name="dateWijnPurchasedOn" VerticalAlignment="Top" Width="115" Margin="5" SelectedDate="{Binding Wine.PurchasedOn, Mode=TwoWay}" DisplayDate="{Binding Wine.PurchasedOn, Mode=TwoWay}"/>
         </Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Producer :" Margin="5"/>
             <ComboBox ItemsSource="{Binding ProducersList}" Name="ProdData" DisplayMemberPath="Name" 
-                      Margin="5" SelectedValue="{Binding Wine.ProducerId, Mode=TwoWay}" SelectedValuePath="Id"/>
+                      Margin="5" SelectedValue="{Binding DetailObject.ProducerId, Mode=TwoWay}" SelectedValuePath="Id"/>
         </StackPanel>
         <StackPanel Margin="5">
             <TextBlock Text="Type : " Margin="5"/>
             <ComboBox ItemsSource="{Binding TypesList}" Name="TypeData" DisplayMemberPath="Type" 
-                      Margin="5" SelectedValue="{Binding Wine.TypeId, Mode=TwoWay}" SelectedValuePath="Id"/>
+                      Margin="5" SelectedValue="{Binding DetailObject.TypeId, Mode=TwoWay}" SelectedValuePath="Id"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="SaveBtn" Content="Save" Style="{StaticResource NavigationButtons}" Command="{Binding SaveCommand}" />

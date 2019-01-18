@@ -15,89 +15,31 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WineDetailViewModel : ViewModelBase
+    class WineDetailViewModel : BaseDetailViewModel<Wine>
     {
-        private readonly string _baseUri = "https://localhost:44361/api";
-        private IEventAggregator _eventAggregator;
-
-        public ICommand SaveCommand { get; }
 
         public WineDetailViewModel()
         {
-            _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
             _eventAggregator.GetEvent<DeletedWineEvent>().Subscribe(OnDeleteWine);
-            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             OnOpenWineDetailView(0);
-            Wine = new Wine();
+            DetailObject = new Wine();
         }
 
         private void OnDeleteWine()
         {
-            Wine = new Wine();
-        }
-
-        private bool OnSaveCanExecute()
-        {
-            //TO DO also add validation and has changes
-            //return Wine != null;
-            return true;
-        }
-
-        private async void OnSaveExecute()
-        {
-            if (Wine.Id != 0) await UpdateWine();
-            else await SaveWine();
-        }
-
-        private async Task UpdateWine()
-        {
-            await ApiHelper.PutCallAPI<Wine, Wine>($"{_baseUri}/wines/{Wine.Id}", Wine);
-
-            _eventAggregator.GetEvent<SavedWineEvent>()
-                    .Publish(new WineSimple
-                    {
-                        Id = Wine.Id,
-                        Name = Wine.Name,
-                        Year = Wine.Year
-                    });
-        }
-
-        private async Task SaveWine()
-        {
-            await ApiHelper.PostCallAPI<Wine, Wine>($"{_baseUri}/wines", Wine);
-
-            _eventAggregator.GetEvent<SavedWineEvent>()
-                    .Publish(new WineSimple
-                    {
-                        Id = 0,
-                        Name = Wine.Name,
-                        Year = Wine.Year
-                    });
+            DetailObject = new Wine();
         }
 
         private void OnOpenWineDetailView(int wineId)
         {
-            if (wineId != 0) Wine = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
+            if (wineId != 0) DetailObject = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
 
             IEnumerable<Producer> producers = ApiHelper.GetApiResult<IEnumerable<Producer>>($"{_baseUri}/producers");
             ProducersList = new ObservableCollection<Producer>(producers);
 
             IEnumerable<WineType> types = ApiHelper.GetApiResult<IEnumerable<WineType>>($"{_baseUri}/types");
             TypesList = new ObservableCollection<WineType>(types);
-        }
-
-        private Wine _wine;
-
-        public Wine Wine
-        {
-            get { return _wine; }
-            set
-            {
-                _wine = value;
-                OnPropertyChanged();
-                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-            }
         }
 
         private ObservableCollection<Producer> _producersList;
@@ -109,7 +51,7 @@ namespace WineGUI.ViewModel
             {
                 _producersList = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Wine));
+                OnPropertyChanged(nameof(DetailObject));
             }
 
         }
@@ -123,7 +65,7 @@ namespace WineGUI.ViewModel
             {
                 _typesList = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Wine));
+                OnPropertyChanged(nameof(DetailObject));
             }
         }
 
