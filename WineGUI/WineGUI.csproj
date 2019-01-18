@@ -83,10 +83,18 @@
     <Compile Include="ViewModel\BaseListViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseDetailViewModel.cs" />
+    <Compile Include="ViewModel\ProducerDetailViewModel.cs" />
+    <Compile Include="ViewModel\ProducersListViewModel.cs" />
     <Compile Include="ViewModel\WineDetailViewModel.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
+    <Compile Include="View\ProducerDetailView.xaml.cs">
+      <DependentUpon>ProducerDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProducersListView.xaml.cs">
       <DependentUpon>ProducersListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TypeDetailView.xaml.cs">
+      <DependentUpon>TypeDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TypesListView.xaml.cs">
       <DependentUpon>TypesListView.xaml</DependentUpon>
@@ -109,7 +117,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ProducerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProducersListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TypeDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

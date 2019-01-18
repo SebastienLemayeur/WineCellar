@@ -15,5 +15,12 @@ namespace WineAPI.Controllers
         public ProducersController(ProducerRepository repo) : base(repo)
         {
         }
+
+        [HttpGet]
+        [Route("simple")]
+        public async Task<IActionResult> GetSimple()
+        {
+            return Ok(await repository.GetSimple());
+        }
     }
 }
