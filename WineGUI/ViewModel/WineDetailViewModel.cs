@@ -21,13 +21,7 @@ namespace WineGUI.ViewModel
         public WineDetailViewModel()
         {
             _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
-            _eventAggregator.GetEvent<ClearDetailObjectEvent>().Subscribe(OnDeleteWine);
             OnOpenWineDetailView(0);
-            DetailObject = new Wine();
-        }
-
-        private void OnDeleteWine()
-        {
             DetailObject = new Wine();
         }
 

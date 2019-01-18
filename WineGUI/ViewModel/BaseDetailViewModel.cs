@@ -12,7 +12,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class BaseDetailViewModel <T> : BaseViewModel where T : EntityBase
+    class BaseDetailViewModel <T> : BaseViewModel where T : EntityBase, new()
     {
         public ICommand SaveCommand { get; }
         protected IEventAggregator _eventAggregator;
@@ -20,6 +20,7 @@ namespace WineGUI.ViewModel
         public BaseDetailViewModel()
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
+            _eventAggregator.GetEvent<ClearDetailObjectEvent>().Subscribe(OnClearDetailObject);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
@@ -32,6 +33,11 @@ namespace WineGUI.ViewModel
         {
             if (DetailObject.Id != 0) await UpdateDetailObject();
             else await SaveDetailObject();
+        }
+
+        private void OnClearDetailObject()
+        {
+            DetailObject = new T();
         }
 
         private async Task UpdateDetailObject()
