@@ -5,9 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WineGUI.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:ViewModels="clr-namespace:WineGUI.ViewModel">
 
+    <UserControl.DataContext>
+        <ViewModels:TypesListViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate x:Key="WineListTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" Text="{Binding Detail, Mode=TwoWay, StringFormat= ({0})}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        <Label Content="Types" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox Name="WineListBox" Grid.Row="0" ItemsSource="{Binding ItemList}" ItemTemplate="{StaticResource WineListTemplate}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+        <StackPanel Grid.Row="1">
+            <Button Content="Add" Style="{StaticResource ButtonStyle}" Command="{Binding AddItemCommand}" />
+            <Button Content="Delete" Style="{StaticResource ButtonStyle}" Command="{Binding DeleteItemCommand}" />
+        </StackPanel>
     </Grid>
 </UserControl>
