@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using WineGUI.Event;
 using WineGUI.Helpers;
 using WineLib.DTO;
 
@@ -14,16 +16,23 @@ namespace WineGUI.ViewModel
     class BaseListViewModel : BaseViewModel
     { 
         protected IEventAggregator _eventAggregator;
-
+        public ICommand AddItemCommand { get; }
         public BaseListViewModel()
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
+            AddItemCommand = new DelegateCommand(OnAddItemExecute);
         }
 
         protected void GetItemList()
         {
             IEnumerable<ListItem> list = ApiHelper.GetApiResult<IEnumerable<ListItem>>($"{_baseUri}/wines/simple");
             ItemList = new ObservableCollection<ListItem>(list);
+        }
+
+        private void OnAddItemExecute()
+        {
+            _eventAggregator.GetEvent<ClearDetailObjectEvent>()
+                    .Publish();
         }
 
         private ObservableCollection<ListItem> _itemList;

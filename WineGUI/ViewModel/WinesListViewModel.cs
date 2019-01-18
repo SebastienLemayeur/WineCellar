@@ -19,14 +19,13 @@ namespace WineGUI.ViewModel
 {
     class WinesListViewModel : BaseListViewModel
     {
-        public ICommand AddWineCommand { get; }
+
         public ICommand DeleteWineCommand { get; }
 
 
         public WinesListViewModel()
         {
             GetItemList();
-            AddWineCommand = new DelegateCommand(OnAddWineExecute);
             DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
             _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(GetItemList);
         }
@@ -42,12 +41,6 @@ namespace WineGUI.ViewModel
             _eventAggregator.GetEvent<ClearDetailObjectEvent>()
                     .Publish();
             GetItemList();
-        }
-
-        private void OnAddWineExecute()
-        {
-            _eventAggregator.GetEvent<ClearDetailObjectEvent>()
-                    .Publish();
         }
 
         private ListItem _selectedWine;
