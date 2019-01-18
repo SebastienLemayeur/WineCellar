@@ -20,45 +20,6 @@ namespace WineGUI.ViewModel
     class WinesListViewModel : BaseListViewModel<Wine>
     {
 
-        public ICommand DeleteWineCommand { get; }
-
-
-        public WinesListViewModel()
-        {
-            GetItemList();
-            DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
-            _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(GetItemList);
-        }
-
-        private bool OnCanDeleteExecute()
-        {
-            return SelectedWine != null;
-        }
-
-        private async void OnDeleteExecute()
-        {
-            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/wines/{_selectedWine.Id}");
-            _eventAggregator.GetEvent<ClearDetailObjectEvent>()
-                    .Publish();
-            GetItemList();
-        }
-
-        private ListItem _selectedWine;
-
-        public ListItem SelectedWine
-        {
-            get { return _selectedWine; }
-            set
-            {
-                _selectedWine = value;
-                OnPropertyChanged();
-                ((DelegateCommand)DeleteWineCommand).RaiseCanExecuteChanged();
-                int wineId = _selectedWine == null ? 0 : _selectedWine.Id;
-                _eventAggregator.GetEvent<OpenItemDetailViewEvent>()
-                    .Publish(wineId);
-            }
-        }
-
 
     }
 }
