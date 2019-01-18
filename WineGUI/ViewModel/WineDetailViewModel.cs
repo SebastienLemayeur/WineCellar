@@ -20,12 +20,10 @@ namespace WineGUI.ViewModel
 
         public WineDetailViewModel()
         {
-            _eventAggregator.GetEvent<OpenItemDetailViewEvent>().Subscribe(OnOpenWineDetailView);
-            OnOpenWineDetailView(0);
-            DetailObject = new Wine();
+            
         }
 
-        private void OnOpenWineDetailView(int wineId)
+        protected override void OnOpenWineDetailView(int wineId)
         {
             if (wineId != 0) DetailObject = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
 

@@ -59,7 +59,7 @@ namespace WineGUI.ViewModel
 
         private async void OnDeleteExecute()
         {
-            await ApiHelper.DelCallAPI<T>(GetApiString() + "/{_selectedItem.Id}");
+            await ApiHelper.DelCallAPI<T>(GetApiString() + $"/{_selectedItem.Id}");
             _eventAggregator.GetEvent<ClearDetailObjectEvent>()
                     .Publish();
             GetItemList();

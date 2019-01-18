@@ -22,7 +22,16 @@ namespace WineGUI.ViewModel
             _eventAggregator = EventAggregatorSingleton.Instance;
             _eventAggregator.GetEvent<ClearDetailObjectEvent>().Subscribe(OnClearDetailObject);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            _eventAggregator.GetEvent<OpenItemDetailViewEvent>().Subscribe(OnOpenWineDetailView);
+            OnOpenWineDetailView(0);
+            DetailObject = new T();
         }
+
+        protected virtual void OnOpenWineDetailView(int wineId)
+        {
+            if (wineId != 0) DetailObject = ApiHelper.GetApiResult<T>(GetApiString() +$"/{wineId}");
+        }
+
 
         private bool OnSaveCanExecute()
         {

@@ -35,7 +35,7 @@
             <TextBlock Grid.Row="4" Text="Drinken voor :" VerticalAlignment="Center"/>
             <TextBox Grid.Row="4" Grid.Column="2" Name="txtWijnDrinkBeofre" Margin="5" Text="{Binding DetailObject.DrinkBefore, Mode=TwoWay}"/>
             <TextBlock Grid.Row="5" Text="Gekocht op :" VerticalAlignment="Center"/>
-            <DatePicker Grid.Row="5" Grid.Column="2" Height="25" HorizontalAlignment="Left" Name="dateWijnPurchasedOn" VerticalAlignment="Top" Width="115" Margin="5" SelectedDate="{Binding Wine.PurchasedOn, Mode=TwoWay}" DisplayDate="{Binding Wine.PurchasedOn, Mode=TwoWay}"/>
+            <DatePicker Grid.Row="5" Grid.Column="2" Height="25" HorizontalAlignment="Left" Name="dateWijnPurchasedOn" VerticalAlignment="Top" Width="115" Margin="5" SelectedDate="{Binding DetailObject.PurchasedOn, Mode=TwoWay}" DisplayDate="{Binding DetailObject.PurchasedOn, Mode=TwoWay}"/>
         </Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Producer :" Margin="5"/>
