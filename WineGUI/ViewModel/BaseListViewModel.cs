@@ -13,7 +13,7 @@ using WineLib.DTO;
 
 namespace WineGUI.ViewModel
 {
-    class BaseListViewModel : BaseViewModel
+    class BaseListViewModel<T> : BaseViewModel
     { 
         protected IEventAggregator _eventAggregator;
         public ICommand AddItemCommand { get; }
@@ -25,7 +25,7 @@ namespace WineGUI.ViewModel
 
         protected void GetItemList()
         {
-            IEnumerable<ListItem> list = ApiHelper.GetApiResult<IEnumerable<ListItem>>($"{_baseUri}/wines/simple");
+            IEnumerable<ListItem> list = ApiHelper.GetApiResult<IEnumerable<ListItem>>(GetApiString() + "/simple");
             ItemList = new ObservableCollection<ListItem>(list);
         }
 
@@ -45,6 +45,26 @@ namespace WineGUI.ViewModel
                 _itemList = value;
                 OnPropertyChanged();
             }
+        }
+
+        private string GetApiString()
+        {
+            string ApiString = _baseUri;
+            switch (typeof(T).Name)
+            {
+                case "Wine":
+                    ApiString = _baseUri + "/wines";
+                    break;
+                case "Producer":
+                    ApiString = _baseUri + "/producers";
+                    break;
+                case "WineType":
+                    ApiString = _baseUri + "/types";
+                    break;
+                default:
+                    break;
+            }
+            return ApiString;
         }
     }
 }

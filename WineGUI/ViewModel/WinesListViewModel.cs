@@ -17,7 +17,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel : BaseListViewModel
+    class WinesListViewModel : BaseListViewModel<Wine>
     {
 
         public ICommand DeleteWineCommand { get; }
