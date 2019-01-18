@@ -39,7 +39,7 @@ namespace WineGUI.ViewModel
             await ApiHelper.PutCallAPI<T, T>($"{_baseUri}/wines/{DetailObject.Id}", DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
-                    .Publish(DetailObject.Id);
+                    .Publish();
         }
 
         private async Task SaveDetailObject()
@@ -47,7 +47,7 @@ namespace WineGUI.ViewModel
             await ApiHelper.PostCallAPI<T, T>($"{_baseUri}/wines", DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
-                    .Publish(DetailObject.Id);
+                    .Publish();
         }
 
         private T _detailObject;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WineGUI.Event
 {
-    class SavedDetailObjectEvent : PubSubEvent<int>
+    class SavedDetailObjectEvent : PubSubEvent
     {
     }
 }
