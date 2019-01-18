@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WineGUI.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" MinWidth="200"
       xmlns:ViewModels="clr-namespace:WineGUI.ViewModel">
 
     <UserControl.DataContext>
@@ -19,7 +19,6 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" FontWeight="Bold" />
-                <TextBlock Grid.Column="1" Text="{Binding Detail, Mode=TwoWay, StringFormat= ({0})}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
