@@ -18,20 +18,7 @@ namespace WineGUI.ViewModel
     class WineDetailViewModel : BaseDetailViewModel<Wine>
     {
 
-        public WineDetailViewModel()
-        {
-            _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
-            _eventAggregator.GetEvent<DeletedWineEvent>().Subscribe(OnDeleteWine);
-            OnOpenWineDetailView(0);
-            DetailObject = new Wine();
-        }
-
-        private void OnDeleteWine()
-        {
-            DetailObject = new Wine();
-        }
-
-        private void OnOpenWineDetailView(int wineId)
+        protected override void OnOpenWineDetailView(int wineId)
         {
             if (wineId != 0) DetailObject = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
 

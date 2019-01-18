@@ -12,7 +12,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class BaseDetailViewModel <T> : BaseViewModel where T : EntityBase
+    class BaseDetailViewModel <T> : BaseViewModel<T> where T : EntityBase, new()
     {
         public ICommand SaveCommand { get; }
         protected IEventAggregator _eventAggregator;
@@ -20,8 +20,18 @@ namespace WineGUI.ViewModel
         public BaseDetailViewModel()
         {
             _eventAggregator = EventAggregatorSingleton.Instance;
+            _eventAggregator.GetEvent<ClearDetailObjectEvent>().Subscribe(OnClearDetailObject);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            _eventAggregator.GetEvent<OpenItemDetailViewEvent>().Subscribe(OnOpenWineDetailView);
+            OnOpenWineDetailView(0);
+            DetailObject = new T();
         }
+
+        protected virtual void OnOpenWineDetailView(int wineId)
+        {
+            if (wineId != 0) DetailObject = ApiHelper.GetApiResult<T>(GetApiString() +$"/{wineId}");
+        }
+
 
         private bool OnSaveCanExecute()
         {
@@ -34,12 +44,17 @@ namespace WineGUI.ViewModel
             else await SaveDetailObject();
         }
 
+        private void OnClearDetailObject()
+        {
+            DetailObject = new T();
+        }
+
         private async Task UpdateDetailObject()
         {
             await ApiHelper.PutCallAPI<T, T>($"{_baseUri}/wines/{DetailObject.Id}", DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
-                    .Publish(DetailObject.Id);
+                    .Publish();
         }
 
         private async Task SaveDetailObject()
@@ -47,7 +62,7 @@ namespace WineGUI.ViewModel
             await ApiHelper.PostCallAPI<T, T>($"{_baseUri}/wines", DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
-                    .Publish(DetailObject.Id);
+                    .Publish();
         }
 
         private T _detailObject;

@@ -75,8 +75,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Event\DeletedWineEvent.cs" />
-    <Compile Include="Event\OpenWineDetailViewEvent.cs" />
+    <Compile Include="Event\ClearDetailObjectEvent.cs" />
+    <Compile Include="Event\OpenItemDetailViewEvent.cs" />
     <Compile Include="Event\SavedDetailObjectEvent.cs" />
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />
@@ -85,9 +85,6 @@
     <Compile Include="ViewModel\BaseDetailViewModel.cs" />
     <Compile Include="ViewModel\WineDetailViewModel.cs" />
     <Compile Include="ViewModel\WinesListViewModel.cs" />
-    <Compile Include="View\AddWineWindow.xaml.cs">
-      <DependentUpon>AddWineWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ProducersListView.xaml.cs">
       <DependentUpon>ProducersListView.xaml</DependentUpon>
     </Compile>
@@ -112,10 +109,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\AddWineWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ProducersListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

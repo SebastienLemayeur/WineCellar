@@ -17,63 +17,8 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class WinesListViewModel : BaseListViewModel
+    class WinesListViewModel : BaseListViewModel<Wine>
     {
-        public ICommand AddWineCommand { get; }
-        public ICommand DeleteWineCommand { get; }
-        private AddWineWindow _addWineWindow { get; set; }
-
-
-        public WinesListViewModel()
-        {
-            GetItemList();
-            AddWineCommand = new DelegateCommand(OnAddWineExecute);
-            DeleteWineCommand = new DelegateCommand(OnDeleteExecute, OnCanDeleteExecute);
-            _eventAggregator.GetEvent<SavedDetailObjectEvent>().Subscribe(UpdateNavigation);
-        }
-
-        private bool OnCanDeleteExecute()
-        {
-            return SelectedWine != null;
-        }
-
-        private async void OnDeleteExecute()
-        {
-            await ApiHelper.DelCallAPI<Wine>($"{_baseUri}/wines/{_selectedWine.Id}");
-            _eventAggregator.GetEvent<DeletedWineEvent>()
-                    .Publish();
-            UpdateNavigation(_selectedWine.Id);
-        }
-
-        private void OnAddWineExecute()
-        {
-            _addWineWindow = new AddWineWindow();
-            _addWineWindow.Show();
-        }
-
-        private void UpdateNavigation(int detailObjectId)
-        {
-            //to do: calls API again, better might be just updating the WineList with the item..
-            GetItemList();
-            if (_addWineWindow != null && detailObjectId == 0) _addWineWindow.Close();
-        }
-
-
-        private ListItem _selectedWine;
-
-        public ListItem SelectedWine
-        {
-            get { return _selectedWine; }
-            set
-            {
-                _selectedWine = value;
-                OnPropertyChanged();
-                ((DelegateCommand)DeleteWineCommand).RaiseCanExecuteChanged();
-                int wineId = _selectedWine == null ? 0 : _selectedWine.Id;
-                _eventAggregator.GetEvent<OpenWineDetailViewEvent>()
-                    .Publish(wineId);
-            }
-        }
 
 
     }

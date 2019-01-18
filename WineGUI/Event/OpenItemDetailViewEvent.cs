@@ -2,7 +2,7 @@
 
 namespace WineGUI.Event
 {
-    class DeletedWineEvent : PubSubEvent
+    public class OpenItemDetailViewEvent : PubSubEvent<int>
     {
     }
 }
