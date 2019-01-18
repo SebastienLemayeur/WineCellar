@@ -10,10 +10,11 @@ using System.Windows.Input;
 using WineGUI.Event;
 using WineGUI.Helpers;
 using WineLib.DTO;
+using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class BaseListViewModel<T> : BaseViewModel
+    class BaseListViewModel<T> : BaseViewModel<T> where T: EntityBase
     { 
         protected IEventAggregator _eventAggregator;
         public ICommand AddItemCommand { get; }
@@ -53,51 +54,31 @@ namespace WineGUI.ViewModel
 
         private bool OnCanDeleteExecute()
         {
-            return SelectedWine != null;
+            return SelectedItem != null;
         }
 
         private async void OnDeleteExecute()
         {
-            await ApiHelper.DelCallAPI<T>(GetApiString() + "/{_selectedWine.Id}");
+            await ApiHelper.DelCallAPI<T>(GetApiString() + "/{_selectedItem.Id}");
             _eventAggregator.GetEvent<ClearDetailObjectEvent>()
                     .Publish();
             GetItemList();
         }
 
-        private ListItem _selectedWine;
+        private ListItem _selectedItem;
 
-        public ListItem SelectedWine
+        public ListItem SelectedItem
         {
-            get { return _selectedWine; }
+            get { return _selectedItem; }
             set
             {
-                _selectedWine = value;
+                _selectedItem = value;
                 OnPropertyChanged();
                 ((DelegateCommand)DeleteItemCommand).RaiseCanExecuteChanged();
-                int wineId = _selectedWine == null ? 0 : _selectedWine.Id;
+                int wineId = _selectedItem == null ? 0 : _selectedItem.Id;
                 _eventAggregator.GetEvent<OpenItemDetailViewEvent>()
                     .Publish(wineId);
             }
-        }
-
-        private string GetApiString()
-        {
-            string ApiString = _baseUri;
-            switch (typeof(T).Name)
-            {
-                case "Wine":
-                    ApiString = _baseUri + "/wines";
-                    break;
-                case "Producer":
-                    ApiString = _baseUri + "/producers";
-                    break;
-                case "WineType":
-                    ApiString = _baseUri + "/types";
-                    break;
-                default:
-                    break;
-            }
-            return ApiString;
         }
     }
 }

@@ -12,7 +12,7 @@ using WineLib.Models;
 
 namespace WineGUI.ViewModel
 {
-    class BaseDetailViewModel <T> : BaseViewModel where T : EntityBase, new()
+    class BaseDetailViewModel <T> : BaseViewModel<T> where T : EntityBase, new()
     {
         public ICommand SaveCommand { get; }
         protected IEventAggregator _eventAggregator;
