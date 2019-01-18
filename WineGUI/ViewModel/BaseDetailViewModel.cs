@@ -51,7 +51,8 @@ namespace WineGUI.ViewModel
 
         private async Task UpdateDetailObject()
         {
-            await ApiHelper.PutCallAPI<T, T>($"{_baseUri}/wines/{DetailObject.Id}", DetailObject);
+            string apiString = GetApiString() + $"/{DetailObject.Id}";
+            await ApiHelper.PutCallAPI<T, T>(apiString, DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
                     .Publish();
@@ -59,7 +60,7 @@ namespace WineGUI.ViewModel
 
         private async Task SaveDetailObject()
         {
-            await ApiHelper.PostCallAPI<T, T>($"{_baseUri}/wines", DetailObject);
+            await ApiHelper.PostCallAPI<T, T>(GetApiString(), DetailObject);
 
             _eventAggregator.GetEvent<SavedDetailObjectEvent>()
                     .Publish();
