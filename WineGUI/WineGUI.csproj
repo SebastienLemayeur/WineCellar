@@ -76,7 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Event\ClearDetailObjectEvent.cs" />
-    <Compile Include="Event\OpenWineDetailViewEvent.cs" />
+    <Compile Include="Event\OpenItemDetailViewEvent.cs" />
     <Compile Include="Event\SavedDetailObjectEvent.cs" />
     <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Helpers\EventAggregatorSingleton.cs" />

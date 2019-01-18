@@ -20,7 +20,7 @@ namespace WineGUI.ViewModel
 
         public WineDetailViewModel()
         {
-            _eventAggregator.GetEvent<OpenWineDetailViewEvent>().Subscribe(OnOpenWineDetailView);
+            _eventAggregator.GetEvent<OpenItemDetailViewEvent>().Subscribe(OnOpenWineDetailView);
             OnOpenWineDetailView(0);
             DetailObject = new Wine();
         }

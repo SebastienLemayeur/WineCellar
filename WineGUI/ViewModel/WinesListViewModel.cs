@@ -54,7 +54,7 @@ namespace WineGUI.ViewModel
                 OnPropertyChanged();
                 ((DelegateCommand)DeleteWineCommand).RaiseCanExecuteChanged();
                 int wineId = _selectedWine == null ? 0 : _selectedWine.Id;
-                _eventAggregator.GetEvent<OpenWineDetailViewEvent>()
+                _eventAggregator.GetEvent<OpenItemDetailViewEvent>()
                     .Publish(wineId);
             }
         }
