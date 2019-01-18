@@ -18,11 +18,6 @@ namespace WineGUI.ViewModel
     class WineDetailViewModel : BaseDetailViewModel<Wine>
     {
 
-        public WineDetailViewModel()
-        {
-            
-        }
-
         protected override void OnOpenWineDetailView(int wineId)
         {
             if (wineId != 0) DetailObject = ApiHelper.GetApiResult<Wine>($"{ _baseUri}/wines/{wineId}");
